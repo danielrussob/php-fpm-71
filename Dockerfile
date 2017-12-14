@@ -1,4 +1,4 @@
-FROM php:7.1.10-fpm-jessie
+FROM php:7.1.12-fpm-jessie
 
 RUN apt-get update \
   && apt-get install -y --no-install-recommends \
@@ -11,7 +11,8 @@ RUN apt-get update \
     libfreetype6-dev \
     libssl-dev \
     libmcrypt-dev \
-  && rm -rf /var/lib/apt/lists/*
+    && rm -rf /var/lib/apt/lists/* \
+    && apt-get purge -y --auto-remove
 
 RUN docker-php-ext-install mcrypt \
   && docker-php-ext-install pdo_mysql \
